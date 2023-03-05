@@ -8,7 +8,7 @@ Dit is de startpagina, pas dit bestand niet aan!
 // Execute database management scripts
 function runScript($fileName)
 {
-    $cmd = "cd .. && sh ./scripts/" . $fileName;
+    $cmd = "cd .. && sh ./config/" . $fileName;
     shell_exec($cmd);
 }
 
@@ -39,7 +39,7 @@ if ($_POST['restore_default'] == 1) {
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Databases Omgeving</title>
 </head>
 
@@ -47,6 +47,7 @@ if ($_POST['restore_default'] == 1) {
     <main class="mx-5 p-5">
         <div class="container mx-3 my-2 shadow p-5 bg-body rounded">
             <h1 class="fw-bold text-center mb-4">
+		<i class="bi bi-database"></i>
                 Databases Omgeving
             </h1>
             <div class="row">
@@ -56,11 +57,17 @@ if ($_POST['restore_default'] == 1) {
                             <i class="bi bi-book"></i>
                             Lesmateriaal
                         </h2>
-                        <ul>
-                            <li>
-                                <a href="/js_api_demos" title="JavaScript APIs" target="_blank"><strong>JavaScript APIs</strong></a>: demos die het gebruik van verschillende JavaScript APIs laten zien.
-                            </li>
-                        </ul>
+
+                        <?php
+                        $files = scandir("lesmateriaal");
+                        $ignored_files = [".", ".."];
+                        echo "<ul>";
+                        foreach ($files as $file) {
+                            if (!in_array($file, $ignored_files)) {
+                                echo '<li><a title="' . $file . '" href="/lesmateriaal/' . $file . '" target="_blank"><strong>' . $file . '</strong></a></li>';
+                            }
+                        }
+                        ?>
                     </div>
                     <div>
                         <h2>
@@ -69,7 +76,7 @@ if ($_POST['restore_default'] == 1) {
                         </h2>
                         <?php
                         $files = scandir("./");
-                        $ignored_files = [".", "..", "mysql-querier"];
+                        $ignored_files = [".", "..", "lesmateriaal"];
                         $found = false;
                         echo "<ul>";
                         foreach ($files as $file) {
@@ -80,7 +87,7 @@ if ($_POST['restore_default'] == 1) {
                         }
                         echo "</ul>";
                         if (!$found) {
-                            echo '<p>Geen websites gevonden, maak een map met een website in de public map om hier weer te geven.</p>';
+                            echo '<p><small>Nog geen websites gevonden, maak een nieuwe website door een map onder \'public\' aan te maken.</small></p>';
                         }
                         ?>
                     </div>
@@ -97,14 +104,14 @@ if ($_POST['restore_default'] == 1) {
                             $databases = array();
                             while ($row = $result->fetch_row()) {
                                 $dbName = $row[0];
-                                // Filter out default databases
+                                // Filter out internal databases
                                 if ($dbName != "information_schema" && $dbName != "performance_schema" && $dbName != "sys" && $dbName != "mysql") {
                                     $databases[] = $dbName;
                                 }
                             }
                             $result->free_result();
                         }
-                        echo "<b>Er zijn " . count($databases) . " databases beschikbaar: </b>";
+                        echo "<b>Er zijn " . count($databases) . " databases beschikbaar in MySQL: </b>";
                         echo "<ul>";
                         foreach ($databases as $dbName) {
                             echo "<li>" . $dbName . "</li>";
@@ -135,14 +142,18 @@ if ($_POST['restore_default'] == 1) {
                         </div>
                         <form id="db-man-form" action="index.php" method="post">
                             <div class="btn-group mb-2" role="group">
-                                <button class="btn btn-outline-primary" name="export" value="1" data-bs-toggle="tooltip" data-bs-html="true" title="<b>Exporteer</b> de databases om met Git op te slaan.">
+                                <button class="btn btn-outline-primary" name="export" value="1" data-bs-toggle="tooltip" data-bs-html="true" title="<b>Exporteer</b> de databases naar de databases map.">
                                     <i class="bi bi-arrow-bar-up"></i>
                                     Exporteren</button>
-                                <button class="btn btn-outline-primary" name="import" value="1" data-bs-toggle="tooltip" data-bs-html="true" title="<b>Importeer</b> de databases die je met Git hebt opgeslagen.">
+                                <button class="btn btn-outline-primary" name="import" value="1" data-bs-toggle="tooltip" data-bs-html="true" title="<b>Importeer</b> de databases uit de databases map.">
                                     <i class="bi bi-arrow-bar-down"></i>
                                     Importeren</button>
+                                <a href="/phpmyadmin" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-html="true" title="Open <b>phpMyAdmin</b> voor het verdere beheer van MySQL." target="_blank">
+                                    <i class="bi bi-database-fill-gear"></i>
+                                    phpMyAdmin
+                                </a>
                             </div>
-                            <button class="btn btn-sm btn-outline-danger" name="restore_default" value="1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Herstel</b> de databases die bij het lesmateriaal horen naar de oorspronkelijke versies.">
+                            <button class="btn btn-sm btn-outline-secondary" name="restore_default" value="1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b>Herstel</b> de databases die bij het lesmateriaal horen.">
                                 <i class="bi bi-skip-backward"></i>
                                 Herstel standaard databases</button>
                         </form>
@@ -154,20 +165,6 @@ if ($_POST['restore_default'] == 1) {
                                 }
                             });
                         </script>
-                    </div>
-                    <div>
-                        <h2>
-                            <i class="bi bi-tools"></i>
-                            Database tools
-                        </h2>
-                        <ul>
-                            <li>
-                                <a href="/phpmyadmin" title="phpMyAdmin" target="_blank"><strong>phpMyAdmin</strong></a>: database administratie programma.
-                            </li>
-                            <li>
-                                <a href="/mysql-querier" title="MySQL Querier" target="_blank"><strong>MySQL Querier</strong></a>: test en voer je SQL-queries uit.
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>

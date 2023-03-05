@@ -2,14 +2,14 @@ image:
   file: .gitpod.Dockerfile
 tasks:
   - name: Startup
-    command: sh ./scripts/startup.sh
+    command: sh ./config/startup.sh
 vscode:
   extensions:
     - dbaeumer.vscode-eslint
     - zhuangtongfa.material-theme
     - bmewburn.vscode-intelephense-client
 ports:
-    # Apache
+    # Automically open Apache site
   - port: 8001
     onOpen: open-browser
   - port: 33060

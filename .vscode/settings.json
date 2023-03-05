@@ -7,7 +7,9 @@
         "**/*Dockerfile": true,
         "**/client.cnf": true,
         "**/config.inc.php": true,
-        "**/mysql.cnf": true
+        "**/mysql.cnf": true,
+        "config/": true,
+        "public/lesmateriaal": true
     },
     "workbench.colorTheme": "One Dark Pro Darker",
     "workbench.preferredDarkColorTheme": "One Dark Pro Darker",
@@ -20,5 +22,6 @@
     "git.autoRepositoryDetection": "openEditors",
     "git.ignoreSubmodules": true,
     "git.detectSubmodules": false,
-    "git.detectSubmodulesLimit": 100
+    "git.detectSubmodulesLimit": 100,
+    "search.followSymlinks": true
 }
