@@ -328,10 +328,10 @@
                 resultInfoContainer.style.display = '';
                 resultContainer.innerHTML = '';
                 if (!result.hasData) {
-                    resultContainer.innerHTML = `<div class="alert alert-success" role="alert">Query succesfol uitgevoerd - geen resultaten.</div>`;
+                    resultContainer.innerHTML = `<div class="alert alert-success" role="alert">Query succesvol uitgevoerd, geen resultaten.</div>`;
                 }
                 else {
-                    // Statss
+                    // Stats
                     resultStats.innerHTML = `<span class="mx-2">Resultaten: <b>${result.from + 1} - ${result.to}     </b></span>
                                              <span class="mx-2">Totaal: <b>${result.count}                           </b></span>
                                              <span class="mx-2">Pagina: <b>${selectedPage + 1}/${result.pageCount}   </b></span>`;
