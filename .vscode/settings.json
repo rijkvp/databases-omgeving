@@ -2,16 +2,12 @@
     "files.exclude": {
         ".imported.lock": true,
         "**/.gitignore": true,
-        "**/.gitmodules": true,
         "**/.gitpod.yml": true,
-        "**/.npmrc": true,
         "**/.vscode": true,
         "**/*Dockerfile": true,
         "**/client.cnf": true,
         "**/config.inc.php": true,
-        "**/databases_default": true,
-        "**/mysql.cnf": true,
-        "**/node_modules": true
+        "**/mysql.cnf": true
     },
     "workbench.colorTheme": "One Dark Pro Darker",
     "workbench.preferredDarkColorTheme": "One Dark Pro Darker",

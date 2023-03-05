@@ -2,8 +2,6 @@ FROM gitpod/workspace-mysql:latest
 
 USER root
 
-RUN install-packages figlet
-
 # Install phpMyAdmin from source, see: https://docs.phpmyadmin.net/en/latest/setup.html#installing-from-git
 RUN git clone https://github.com/phpmyadmin/phpmyadmin.git /usr/share/phpmyadmin --depth 1 --branch STABLE && cd /usr/share/phpmyadmin && composer update --no-dev && yarn install --production
 
