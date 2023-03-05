@@ -14,7 +14,7 @@ Let op: als deze repository is geforked dan wordt de link van de knop niet bijge
 ### Leerling
 
 Leerlingen hebben toegang tot de standaarddatabases en kunnen zelf databases importeren en exporteren via de `databases` map.
-Leerlingen kunnen nieuwe websites maken door een map onder 'public' aan te maken.
+Leerlingen kunnen nieuwe websites maken door een map onder `public` aan te maken.
 Verder hebben ze toegang tot het lesmateriaal dat door de docent wordt voorbereid.
 
 ### Docent
