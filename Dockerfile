@@ -26,6 +26,9 @@ ARG USERNAME=gitpod
 RUN useradd -l -u 33333 -G sudo -md /home/$USERNAME -s /bin/bash -p $USERNAME $USERNAME
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+# Setup MySQL user
+RUN usermod -d /var/lib/mysql/ mysql
+
 # Configure phpMyAdmin
 COPY config/config.inc.php /etc/phpmyadmin/config.inc.php
 

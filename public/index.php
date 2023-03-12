@@ -1,7 +1,8 @@
 <?php
 /*
 
-Dit is de startpagina, pas dit bestand niet aan!
+Dit is de startpagina, pas dit bestand niet aan of verwijder het niet!
+Als je zelf een website bouwt maak dan een nieuwe map hieronder aan.
 
 */
 
