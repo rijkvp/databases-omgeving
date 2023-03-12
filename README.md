@@ -26,7 +26,7 @@ Docenten kunnen lesmateriaal voorbereiden door het in de `lesmateriaal/public` m
 De MySQL database is toegankelijk via het serveraddres `127.0.0.1`.
 Er zijn twee standaard database gebruikers beschikbaar onder het standaardwachtwoord `password`:
 - `user` met alle permissies
-- `read` met readonly permission
+- `readonly` met readonly (alleen-lezen) premissies
 
 Voorbeeld van PHP-code om verbinding te maken met MySQL:
 ```php

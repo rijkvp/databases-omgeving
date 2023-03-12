@@ -8,5 +8,5 @@ ini_set("memory_limit", "8192M");
 
 // Database connections
 $rootDbConn = new mysqli("127.0.0.1", "user", "password");
-$readDbConn = new mysqli("127.0.0.1", "read", "password");
+$readDbConn = new mysqli("127.0.0.1", "readonly", "password");
  
