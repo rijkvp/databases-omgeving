@@ -6,16 +6,14 @@ normal=$(tput sgr0)
 ./setup/start-mysql.sh
 
 LOCKFILE=".imported.lock"
-if test -f "$LOCKFILE"; then
-    echo "Databases zijn al geïmporteerd!"
-else
-    echo "Databases worden geïmporteerd.. Dit kan even duren.."
+if ! test -f "$LOCKFILE"; then
+    echo "Databases worden geïmporteerd.."
     start=`date +%s`
-    ./setup/import_dbs.sh > /dev/null
+    ./setup/import-dbs.sh > /dev/null
     end=`date +%s`
     runtime=$( echo "$end - $start" | bc -l )
     echo "Databases geïmporteerd in $runtime seconden."
     touch $LOCKFILE
 fi
 
-echo "\nOpen ${bold}http://localhost:80${normal} voor het lesmateriaal en de websites."
+echo "Open ${bold}http://localhost:80${normal} om lesmateriaal/websites te bekijken"

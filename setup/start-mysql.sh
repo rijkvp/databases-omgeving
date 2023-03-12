@@ -1,6 +1,5 @@
 #!/bin/bash
 sudo service mysql start
-echo "Waiting for MySQL to launch on 3306..."
 while ! nc -z localhost 3306; do
   sleep 0.1
 done
