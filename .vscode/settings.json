@@ -4,24 +4,13 @@
         "**/.gitignore": true,
         "**/.gitpod.yml": true,
         "**/.vscode": true,
-        "**/*Dockerfile": true,
-        "**/client.cnf": true,
-        "**/config.inc.php": true,
-        "**/mysql.cnf": true,
+        "Dockerfile": true,
         "config/": true,
-        "public/lesmateriaal": true
+        "setup/": true
     },
-    "workbench.colorTheme": "One Dark Pro Darker",
-    "workbench.preferredDarkColorTheme": "One Dark Pro Darker",
-    "workbench.preferredLightColorTheme": "One Dark Pro Darker",
     "redhat.telemetry.enabled": false,
     "editor.fontSize": 16,
     "terminal.integrated.fontSize": 16,
     "git.autofetch": true,
-    "git.inputValidation": "off",
-    "git.autoRepositoryDetection": "openEditors",
-    "git.ignoreSubmodules": true,
-    "git.detectSubmodules": false,
-    "git.detectSubmodulesLimit": 100,
-    "search.followSymlinks": true
+    "git.inputValidation": "off"
 }
