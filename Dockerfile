@@ -29,7 +29,8 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # Configure phpMyAdmin
 COPY config/config.inc.php /etc/phpmyadmin/config.inc.php
 
-# Add Apache config for phpMyAdmin
+# Configure Apache
+RUN cp config/workspace.conf /etc/apache2/sites-available && a2ensite workspace 
 RUN cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf && a2enconf phpmyadmin
 
 # Switch to user

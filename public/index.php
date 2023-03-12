@@ -56,11 +56,11 @@ if ($_POST['restore_default'] == 1) {
                     <div class="mb-5">
                         <h2>
                             <i class="bi bi-book"></i>
-                            Lesmateriaa
+                            Lesmateriaal
                         </h2>
 
                         <?php
-                        $files = scandir("lesmateriaal");
+                        $files = scandir("../lesmateriaal/public");
                         $ignored_files = [".", ".."];
                         echo "<ul>";
                         foreach ($files as $file) {
@@ -79,8 +79,6 @@ if ($_POST['restore_default'] == 1) {
                         $files = scandir("./");
                         $ignored_files = [".", "..", "lesmateriaal"];
                         $found = false;
-                        echo "BRUH";
-                        echo $files;
                         echo "<ul>";
                         foreach ($files as $file) {
                             if (is_dir($file) && !in_array($file, $ignored_files)) {
