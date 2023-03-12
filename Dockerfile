@@ -32,10 +32,6 @@ COPY config/config.inc.php /etc/phpmyadmin/config.inc.php
 # Add Apache config for phpMyAdmin
 RUN cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf && a2enconf phpmyadmin
 
-# Copy files from public
-RUN rm -rf /var/www/html
-COPY public /var/www/html
-
 # Switch to user
 USER $USERNAME
 WORKDIR /home/$USERNAME
