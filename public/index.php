@@ -8,7 +8,7 @@ Dit is de startpagina, pas dit bestand niet aan!
 // Execute database management scripts
 function runScript($fileName)
 {
-    $cmd = "cd .. && sh ./config/" . $fileName;
+    $cmd = "cd .. && sh ./setup/" . $fileName;
     shell_exec($cmd);
 }
 
@@ -17,17 +17,17 @@ $exportDone = false;
 $restoreDone = false;
 
 if ($_POST['import'] == 1) {
-    runScript("import_dbs.sh");
+    runScript("import-dbs.sh");
     $importDone = true;
 }
 
 if ($_POST['export'] == 1) {
-    runScript("export_dbs.sh");
+    runScript("export-dbs.sh");
     $exportDone = true;
 }
 
 if ($_POST['restore_default'] == 1) {
-    runScript("restore_default_dbs.sh");
+    runScript("restore-default-dbs.sh");
     $restoreDone = true;
 }
 
@@ -47,7 +47,7 @@ if ($_POST['restore_default'] == 1) {
     <main class="mx-5 p-5">
         <div class="container mx-3 my-2 shadow p-5 bg-body rounded">
             <h1 class="fw-bold text-center mb-4">
-		<i class="bi bi-database"></i>
+                <i class="bi bi-database"></i>
                 Databases Omgeving
             </h1>
             <div class="row">
@@ -99,7 +99,7 @@ if ($_POST['restore_default'] == 1) {
                             Database beheer
                         </h2>
                         <?php
-                        $mysqli = new mysqli("localhost", "root");
+                        $mysqli = new mysqli("127.0.0.1", "user", "password");
                         if ($result = $mysqli->query("SHOW databases")) {
                             $databases = array();
                             while ($row = $result->fetch_row()) {

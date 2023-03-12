@@ -8,4 +8,4 @@ do
     cp $db_path $target_path
 done
 
-./config/import_dbs.sh
+./setup/import-dbs.sh

@@ -1,18 +1,17 @@
 image:
-  file: .gitpod.Dockerfile
+  file: Dockerfile
 tasks:
   - name: Startup
-    command: sh ./config/startup.sh
-vscode:
-  extensions:
-    - dbaeumer.vscode-eslint
-    - zhuangtongfa.material-theme
-    - bmewburn.vscode-intelephense-client
+    command: sh ./setup/start.sh
 ports:
-    # Automically open Apache site
-  - port: 8001
+  # Open Apache HTTP port
+  - port: 80
     onOpen: open-browser
+  # Ignore MySQL ports
   - port: 33060
     onOpen: ignore
   - port: 3306
     onOpen: ignore
+vscode:
+  extensions:
+    - bmewburn.vscode-intelephense-client
