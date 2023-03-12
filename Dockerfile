@@ -31,7 +31,7 @@ COPY config/config.inc.php /etc/phpmyadmin/config.inc.php
 
 # Configure Apache
 COPY config/workspace.conf /etc/apache2/sites-available 
-RUN a2ensite workspace 
+RUN rm /etc/apache2/sites-enabled/000-default.conf && a2ensite workspace 
 RUN cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf && a2enconf phpmyadmin
 
 # Switch to user
