@@ -2,36 +2,9 @@
 /*
 
 Dit is de startpagina, pas dit bestand niet aan of verwijder het niet!
-Als je zelf een website bouwt maak dan een nieuwe map hieronder aan.
+Als je zelf een website bouwt maak dan in dezelfde map 'public' een nieuwe map aan met de code van jouw website.
 
 */
-
-// Execute database management scripts
-function runScript($fileName)
-{
-    $cmd = "cd .. && sh ./setup/" . $fileName;
-    shell_exec($cmd);
-}
-
-$importDone = false;
-$exportDone = false;
-$restoreDone = false;
-
-if ($_POST['import'] == 1) {
-    runScript("import-dbs.sh");
-    $importDone = true;
-}
-
-if ($_POST['export'] == 1) {
-    runScript("export-dbs.sh");
-    $exportDone = true;
-}
-
-if ($_POST['restore_default'] == 1) {
-    runScript("restore-default-dbs.sh");
-    $restoreDone = true;
-}
-
 ?>
 <!doctype html>
 <html lang="nl">
@@ -39,7 +12,7 @@ if ($_POST['restore_default'] == 1) {
 <head>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="data:,">    
+    <link rel="icon" href="data:,">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Databases Omgeving</title>
@@ -100,7 +73,38 @@ if ($_POST['restore_default'] == 1) {
                             <i class="bi bi-sliders2-vertical"></i>
                             Database beheer
                         </h2>
+                        <div id="loading" class="alert alert-info" style="display: none;" role="alert">
+                            <div class="d-flex align-items-center">
+                                <p id="loading-msg">Aan het laden..</p>
+                                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                            </div>
+                        </div>
                         <?php
+                        function runScript($fileName)
+                        {
+                            $cmd = "cd .. && sh ./setup/" . $fileName;
+                            shell_exec($cmd);
+                        }
+                        function info($msg)
+                        {
+                            echo '<div id="result-msg" class="alert alert-success" role="alert">' . $msg . '</div>';
+                        }
+
+                        if ($_POST['import'] == 1) {
+                            runScript("import-dbs.sh");
+                            info("Databases geïmporteerd.");
+                        }
+
+                        if ($_POST['export'] == 1) {
+                            runScript("export-dbs.sh");
+                            info("Databases gëexporteerd.");
+                        }
+
+                        if ($_POST['restore_default'] == 1) {
+                            runScript("restore-default-dbs.sh");
+                            info("Standaard databases hersteld.");
+                        }
+
                         $mysqli = new mysqli("127.0.0.1", "user", "password");
                         if ($result = $mysqli->query("SHOW databases")) {
                             $databases = array();
@@ -120,28 +124,6 @@ if ($_POST['restore_default'] == 1) {
                         }
                         echo "</ul>";
                         ?>
-                        <?php
-                        function info($msg)
-                        {
-                            echo '<div id="result-msg" class="alert alert-success" role="alert">' . $msg . '</div>';
-                        }
-
-                        if ($importDone) {
-                            info("Databases geïmporteerd.");
-                        }
-                        if ($exportDone) {
-                            info("Databases gëexporteerd.");
-                        }
-                        if ($restoreDone) {
-                            info("Standaard databases hersteld.");
-                        }
-                        ?>
-                        <div id="loading" class="alert alert-info" style="display: none;" role="alert">
-                            <div class="d-flex align-items-center">
-                                <p id="loading-msg">Aan het laden..</p>
-                                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                            </div>
-                        </div>
                         <form id="db-man-form" action="index.php" method="post">
                             <div class="btn-group mb-2" role="group">
                                 <button class="btn btn-outline-primary" name="export" value="1" data-bs-toggle="tooltip" data-bs-html="true" title="<b>Exporteer</b> de databases naar de databases map.">
