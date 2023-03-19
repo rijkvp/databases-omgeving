@@ -1,11 +1,9 @@
 #!/bin/bash
-
+mysql="mysql -h 127.0.0.1 -u user --password=password"
 for db_path in ./lesmateriaal/standaard-databases/*.sql;
 do
-    db_file=$(basename $db_path)
-    target_path="./databases/$db_file"
-    echo "Restore $db_file." 
-    cp $db_path $target_path
+    db_name=$(basename $db_path)
+    echo "Restoring $db_name.."
+    $mysql -e "DROP DATABASE IF EXISTS $db_name; CREATE DATABASE $db_name;"
+    $mysql --init-command="SET SESSION FOREIGN_KEY_CHECKS=0;" $db_name < $db_path
 done
-
-./setup/import-dbs.sh

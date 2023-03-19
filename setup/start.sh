@@ -9,7 +9,7 @@ LOCKFILE=".imported.lock"
 if ! test -f "$LOCKFILE"; then
     echo "Databases worden geïmporteerd.."
     start=`date +%s`
-    ./setup/import-dbs.sh > /dev/null
+    ./setup/import-dbs.sh
     echo "Databases geïmporteerd."
     touch $LOCKFILE
 fi
