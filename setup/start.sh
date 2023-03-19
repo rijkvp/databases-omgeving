@@ -10,9 +10,7 @@ if ! test -f "$LOCKFILE"; then
     echo "Databases worden geïmporteerd.."
     start=`date +%s`
     ./setup/import-dbs.sh > /dev/null
-    end=`date +%s`
-    runtime=$( echo "$end - $start" | bc -l )
-    echo "Databases geïmporteerd in $runtime seconden."
+    echo "Databases geïmporteerd."
     touch $LOCKFILE
 fi
 
