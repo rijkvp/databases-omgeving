@@ -5,7 +5,7 @@
 LOCKFILE=".imported.lock"
 if ! test -f "$LOCKFILE"; then
     echo "Databases worden geïmporteerd.."
-    ./setup/reset-default-dbs.sh
+    ./setup/restore-default-dbs.sh
     ./setup/import-dbs.sh
     touch $LOCKFILE
 fi
