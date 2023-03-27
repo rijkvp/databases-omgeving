@@ -88,31 +88,22 @@ Als je zelf een website bouwt maak dan in dezelfde map 'public' een nieuwe map a
                         }
                         function runScript($fileName) {
                             $cmd = "cd .. && sh ./setup/".$fileName;
-                            if ($out = shell_exec($cmd)) {
-                                echo $out;
-                                return true;
-                            } else {
-                                error("Er ging iets fout :(");
-                                return false;
-                            }
+                            shell_exec($cmd);
                         }
 
                         if ($_POST['import'] == 1) {
-                            if (runScript("import-dbs.sh")) {
-                                info("Databases geïmporteerd.");
-                            }
+                            runScript("import-dbs.sh");
+                            info("Databases geïmporteerd.");
                         }
 
                         if ($_POST['export'] == 1) {
-                            if (runScript("export-dbs.sh")) {
-                                info("Databases gëexporteerd.");
-                            }
+                            runScript("export-dbs.sh");
+                            info("Databases gëexporteerd.");
                         }
 
                         if ($_POST['restore_default'] == 1) {
-                            if (runScript("restore-default-dbs.sh")) {
-                                info("Standaard databases hersteld.");
-                            }
+                            runScript("restore-default-dbs.sh");
+                            info("Standaard databases hersteld.");
                         }
 
                         $mysqli = new mysqli("127.0.0.1", "user", "password");
