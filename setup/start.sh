@@ -1,17 +1,15 @@
 #!/bin/bash
-bold=$(tput bold)
-normal=$(tput sgr0)
-
 ./setup/start-apache.sh
 ./setup/start-mysql.sh
 
 LOCKFILE=".imported.lock"
 if ! test -f "$LOCKFILE"; then
     echo "Databases worden geïmporteerd.."
-    start=`date +%s`
+    ./setup/reset-default-dbs.sh
     ./setup/import-dbs.sh
-    echo "Databases geïmporteerd."
     touch $LOCKFILE
 fi
 
+bold=$(tput bold)
+normal=$(tput sgr0)
 echo "Open ${bold}http://localhost:80${normal} om lesmateriaal/websites te bekijken"

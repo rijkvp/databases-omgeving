@@ -2,7 +2,6 @@
 # Imports all databases from the database directory
 mysql="mysql -h 127.0.0.1 -u user --password=password"
 if [ ! -d "./databases" ]; then
-    echo "No databases folder."
     exit
 fi
 for db_path in ./databases/*.sql;
