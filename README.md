@@ -1,21 +1,26 @@
 # Databases Omgeving
 
-## Gitpod
-
-Open deze omgeving in Gitpod door naar `https://gitpod.io/#<url van jouw repository>` te gaan. Of gebruik op de knop hieronder:
+[![Codespaces Prebuilds](https://github.com/rijkvp/databases-omgeving/actions/workflows/codespaces/create_codespaces_prebuilds/badge.svg)](https://github.com/rijkvp/databases-omgeving/actions/workflows/codespaces/create_codespaces_prebuilds)
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rijkvp/databases-omgeving)
 
-Let op: als deze repository is geforked dan wordt de link van de knop niet bijgewerkt. Voer dan handmatig de URL in.
+## Omgeving openen
 
+### Gitpod
+
+Open deze omgeving in Gitpod door naar `https://gitpod.io/#<url van repository>` te gaan.
+
+### GitHub Codespaces
+
+Maak een nieuwe codespace aan door op de 'Code' knop te drukken.
 
 ## Bestandsindeling
 
 ### Leerling
 
 Leerlingen hebben toegang tot de standaarddatabases en kunnen zelf databases importeren en exporteren via de `databases` map.
-Leerlingen kunnen nieuwe websites maken door een map onder `public` aan te maken.
-Verder hebben ze toegang tot het lesmateriaal dat door de docent wordt voorbereid.
+Nieuwe websites kunnen worden gemaakt door een map onder `public` aan te maken.
+Verder is er toegang tot het lesmateriaal dat door de docent wordt voorbereid.
 
 ### Docent
 
