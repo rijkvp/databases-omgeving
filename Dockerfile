@@ -33,8 +33,8 @@ RUN usermod -d /var/lib/mysql/ mysql
 COPY config/config.inc.php /etc/phpmyadmin/config.inc.php
 
 # Configure Apache
-COPY config/workspace.conf /etc/apache2/sites-available 
-RUN rm /etc/apache2/sites-enabled/000-default.conf && a2ensite workspace 
+COPY config/devsite.conf /etc/apache2/sites-available 
+RUN rm /etc/apache2/sites-enabled/000-default.conf && a2ensite devsite 
 RUN cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf && a2enconf phpmyadmin
 RUN echo "export APACHE_RUN_USER=$USERNAME\nexport APACHE_RUN_GROUP=$USERNAME" >> /etc/apache2/envvars
 
