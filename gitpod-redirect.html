@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Gitpod Redirect</title>
     </head>
     <body>
         <script>
-            console.log(`Redirecting with referrer: ${document.referrer}`);
-            if (document.referrer == null || document.referrer == "") {
-                // No referer provided
-                window.location.replace('https://gitpod.io');
-            } else {
-                const url = new URL(document.referrer);
-                if (url.pathname == "" || url.pathname == "/") {
-                    // No path provided, likely due to browser privacy settings
-                    window.location.replace('https://gitpod.io');
-                } else {
-                    // Redirect to Gitpod URL
-                    window.location.replace(`https://gitpod.io/#${url.href}`);
-                }
-            }
+            window.location.replace(`https://gitpod.io/#${document.referrer}`);
         </script>
     </body>
 </html>
