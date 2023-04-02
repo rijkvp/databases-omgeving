@@ -5,12 +5,12 @@
     </head>
     <body>
         <script>
-            console.log(`Redirecting with referer: ${document.referer}`);
-            if (document.referer == null || document.referer == "") {
+            console.log(`Redirecting with referrer: ${document.referrer}`);
+            if (document.referrer == null || document.referrer == "") {
                 // No referer provided
                 window.location.replace('https://gitpod.io');
             } else {
-                const url = new URL(document.referer);
+                const url = new URL(document.referrer);
                 if (url.pathname == "" || url.pathname == "/") {
                     // No path provided, likely due to browser privacy settings
                     window.location.replace('https://gitpod.io');
