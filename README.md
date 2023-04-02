@@ -2,7 +2,7 @@
 
 [![Codespaces Prebuilds](https://github.com/rijkvp/databases-omgeving/actions/workflows/codespaces/create_codespaces_prebuilds/badge.svg)](https://github.com/rijkvp/databases-omgeving/actions/workflows/codespaces/create_codespaces_prebuilds)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rijkvp/databases-omgeving)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://rijkvp.github.io/databases-omgeving/gitpod-redirect.html)
 
 ## Omgeving openen
 
