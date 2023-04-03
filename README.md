@@ -8,7 +8,7 @@
 
 ### Gitpod
 
-Open deze omgeving in Gitpod door naar `https://gitpod.io/#<url van repository>` te gaan.
+Open deze omgeving in Gitpod door op de bovenstaande knop te drukken of (als dat niet werkt) naar `https://gitpod.io/#<url van repository>` te gaan.
 
 ### GitHub Codespaces
 
