@@ -31,7 +31,7 @@ RUN usermod -d /var/lib/mysql/ mysql
 
 # Configure phpMyAdmin
 COPY config/config.inc.php /etc/phpmyadmin/config.inc.php
-RUN chmod 444 /etc/phpmyadmin/config.inc.php
+RUN chmod 444 /etc/phpmyadmin/config.inc.php && cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf && a2enconf phpmyadmin
 
 # Configure Apache
 COPY config/devsite.conf /etc/apache2/sites-available 
@@ -41,4 +41,3 @@ RUN echo "export APACHE_RUN_USER=$USERNAME\nexport APACHE_RUN_GROUP=$USERNAME" >
 # Switch to user
 USER $USERNAME
 WORKDIR /home/$USERNAME
-
