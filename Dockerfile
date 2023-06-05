@@ -31,6 +31,7 @@ RUN usermod -d /var/lib/mysql/ mysql
 
 # Configure phpMyAdmin
 COPY config/config.inc.php /etc/phpmyadmin/config.inc.php
+RUN chmod 444 /etc/phpmyadmin/config.inc.php
 
 # Configure Apache
 COPY config/devsite.conf /etc/apache2/sites-available 
